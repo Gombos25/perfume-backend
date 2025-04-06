@@ -5,7 +5,9 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
+# Load CSV and clean column names just in case
 df = pd.read_csv("perfumes_dataset.csv")
+df.columns = df.columns.str.strip()  # remove any trailing spaces from headers
 
 @app.route("/")
 def home():
@@ -19,7 +21,8 @@ def recommend():
 
     selected_feelings = [f.lower() for f in data["feelings"]]
 
-    matches = df[df["Feeling Tags"].str.lower().apply(
+    # Fix: handle blank or missing values in 'Feeling Tags' safely
+    matches = df[df["Feeling Tags"].fillna("").str.lower().apply(
         lambda tags: any(feel in tags for feel in selected_feelings)
     )]
 
