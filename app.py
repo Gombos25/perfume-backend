@@ -13,7 +13,7 @@ df = pd.read_csv(csv_path)
 df.columns = df.columns.str.strip()
 
 # Set your OpenAI API Key (use environment variable or paste here for testing)
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+openai.api_key = os.environ.get("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")
 # openai.api_key = "your-real-key-here"  # ← Uncomment and paste your key here if needed
 
 # Tags to match against
