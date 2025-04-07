@@ -1,5 +1,5 @@
 flask
-pandas
-gunicorn
 flask-cors
+pandas
 openai
+gunicorn
